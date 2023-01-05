@@ -22,6 +22,10 @@ const productModel = {
     return pool.query("SELECT * FROM product");
   },
 
+  count: () => {
+    return pool.query("SELECT COUNT(*) AS total FROM product");
+  },
+
   getDetail: (id) => {
     return pool.query("SELECT * FROM product WHERE id = $1", [id]);
   },

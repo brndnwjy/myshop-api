@@ -6,9 +6,9 @@ const cartController = {
   insert: async (req, res, next) => {
     try {
       const id = uuid();
+      const { id: uid } = req.decoded;
+      const { title, price, quantity, description } = req.body;
       let photo = null;
-
-      const { uid, title, price, quantity, description } = req.body;
 
       const data = {
         id,
@@ -35,7 +35,7 @@ const cartController = {
 
   getAll: async (req, res, next) => {
     try {
-      const { uid } = req.body;
+      const { id: uid } = req.decoded;
 
       const {
         rows: [{ total }],

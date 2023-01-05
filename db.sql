@@ -1,6 +1,6 @@
 CREATE DATABASE myshop;
 
-CREATE TABLE user (
+CREATE TABLE users (
     id UUID PRIMARY KEY,
     username VARCHAR(32) NOT NULL,
     email VARCHAR(64) NOT NULL,

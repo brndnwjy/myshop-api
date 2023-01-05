@@ -6,7 +6,7 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 const morgan = require("morgan");
 
-const main = require("./src/router")
+const main = require("./src/router");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -22,7 +22,7 @@ app.use(
   })
 );
 
-app.use("v1", main);
+app.use("/v1", main);
 
 app.all("*", (req, res, next) => {
   next(
@@ -30,15 +30,6 @@ app.all("*", (req, res, next) => {
       message: "Page not found",
     })
   );
-});
-
-app.use((err, req, res) => {
-  const msg = err.statusMessage || "Internal Server Error";
-  const code = err.statusCode || "500";
-
-  res.status(code).json({
-    message: msg,
-  });
 });
 
 app.listen(PORT, () => {

@@ -4,8 +4,8 @@ const cartModel = {
   insert: (data) => {
     return pool.query(
       `
-    INSERT INTO cart (id, uid, title, price, quantity, description, photo)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    INSERT INTO cart (id, uid, title, price, quantity, description, photo, total)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     `,
       [
         data.id,
@@ -15,6 +15,7 @@ const cartModel = {
         data.quantity,
         data.description,
         data.photo,
+        data.total,
       ]
     );
   },

@@ -18,13 +18,14 @@ const cartController = {
         quantity,
         description,
         photo,
+        total: price * quantity,
       };
 
       await cartModel.insert(data);
 
       res.json({
         msg: "Insert cart success",
-        product: data,
+        product: { data },
       });
     } catch (err) {
       console.log(err);

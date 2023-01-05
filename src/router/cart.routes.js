@@ -1,11 +1,11 @@
 const express = require("express");
-const { insert, getAll } = require("../controller/cart.controller");
+const { insert, getAll, remove } = require("../controller/cart.controller");
 const router = express.Router();
 
 router
 .post("/", insert)
 .get("/", getAll)
+.delete("/:id", remove);
 // .put("/")
-// .delete("/");
 
 module.exports = router;

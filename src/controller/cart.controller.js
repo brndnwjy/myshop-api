@@ -57,6 +57,26 @@ const cartController = {
       next(createError(500, "Get cart failed"));
     }
   },
+
+  remove: async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const {
+        rows: [cart],
+      } = await cartModel.getDetail(id);
+
+      await cartModel.remove(id);
+
+      res.json({
+        msg: "Remove cart success",
+        cart,
+      });
+    } catch (err) {
+      console.log(err);
+      next(createError(500, "Remove cart failed"));
+    }
+  },
 };
 
 module.exports = cartController;

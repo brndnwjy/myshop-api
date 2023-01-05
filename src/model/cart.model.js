@@ -28,6 +28,14 @@ const cartModel = {
       uid,
     ]);
   },
+
+  getDetail: (id) => {
+    return pool.query("SELECT * FROM cart WHERE id = $1", [id]);
+  },
+
+  remove: (id) => {
+    return pool.query("DELETE FROM cart WHERE id = $1", [id]);
+  },
 };
 
 module.exports = cartModel;

@@ -47,6 +47,10 @@ const productModel = {
       ]
     );
   },
+
+  remove: (id) => {
+    return pool.query("DELETE FROM product WHERE id = $1", [id]);
+  },
 };
 
 module.exports = productModel;

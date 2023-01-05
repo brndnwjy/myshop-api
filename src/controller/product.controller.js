@@ -1,6 +1,7 @@
 const { v4: uuid } = require("uuid");
 const createError = require("http-errors");
 const productModel = require("../model/product.model");
+const pool = require("../config/db");
 
 const productController = {
   insert: (req, res, next) => {
@@ -89,6 +90,26 @@ const productController = {
     } catch (err) {
       console.log(err);
       next(createError(500, "Update product failed"));
+    }
+  },
+
+  remove: async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const {
+        rows: [product],
+      } = await productModel.getDetail(id);
+
+      await productModel.remove(id);
+
+      res.json({
+        msg: "Delete product success",
+        product,
+      });
+    } catch (err) {
+      console.log(err);
+      next(createError(500, "Delete product failed"));
     }
   },
 };

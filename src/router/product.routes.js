@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { insert } = require("../controller/product.controller");
+const { insert, getAll } = require("../controller/product.controller");
 
 router
 .post("/", insert)
-// .get("/")
+.get("/", getAll)
 // .put("/")
 // .delete("/");
 

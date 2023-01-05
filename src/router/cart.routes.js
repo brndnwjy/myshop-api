@@ -1,9 +1,10 @@
 const express = require("express");
+const { insert } = require("../controller/cart.controller");
 const router = express.Router();
 
-// router
+router
+.post("/", insert)
 // .get("/")
-// .post("/")
 // .put("/")
 // .delete("/");
 

@@ -44,6 +44,23 @@ const productController = {
         next(createError(500, "Get products failed"));
       });
   },
+
+  getDetail: (req, res, next) => {
+    const { id } = req.params;
+
+    productModel
+      .getDetail(id)
+      .then((data) => {
+        res.json({
+          msg: "Get product detail success",
+          product: data.rows[0],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        next(createError(500, "Get product detail failed"));
+      });
+  },
 };
 
 module.exports = productController;

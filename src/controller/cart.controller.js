@@ -31,6 +31,32 @@ const cartController = {
       next(createError(500, "Insert cart failed"));
     }
   },
+
+  getAll: async (req, res, next) => {
+    try {
+      const { uid } = req.body;
+
+      const {
+        rows: [{ total }],
+      } = await cartModel.count(uid);
+
+      if (parseInt(total) < 1) {
+        res.json({
+          msg: "There is nothing in your cart",
+        });
+      }
+
+      const { rows: cart } = await cartModel.getAll(uid);
+
+      res.json({
+        msg: "Get cart success",
+        cart,
+      });
+    } catch (err) {
+      console.log(err);
+      next(createError(500, "Get cart failed"));
+    }
+  },
 };
 
 module.exports = cartController;

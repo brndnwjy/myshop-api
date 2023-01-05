@@ -18,6 +18,16 @@ const cartModel = {
       ]
     );
   },
+
+  getAll: (uid) => {
+    return pool.query("SELECT * FROM cart WHERE uid = $1", [uid]);
+  },
+
+  count: (uid) => {
+    return pool.query("SELECT COUNT(*) AS total FROM cart WHERE uid = $1", [
+      uid,
+    ]);
+  },
 };
 
 module.exports = cartModel;

@@ -1,11 +1,11 @@
 const express = require("express");
 const { insert, getAll, remove } = require("../controller/cart.controller");
-const jwtAuth = require("../middleware/auth");
+const firebaseAuth = require("../middleware/auth-firebase");
 const router = express.Router();
 
 router
-  .post("/", jwtAuth, insert)
-  .get("/", jwtAuth, getAll)
-  .delete("/:id", jwtAuth, remove);
+  .post("/", firebaseAuth, insert)
+  .get("/", firebaseAuth, getAll)
+  .delete("/:id", firebaseAuth, remove);
 
 module.exports = router;

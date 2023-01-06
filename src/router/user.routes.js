@@ -4,10 +4,6 @@ const { register, login, firebaseRegister } = require("../controller/user.contro
 
 router
   // auth
-  .post("/register", register)
-  .post("/login", login)
-
-  // firebase auth
   .post("/firebase-register", firebaseRegister)
 
 module.exports = router;

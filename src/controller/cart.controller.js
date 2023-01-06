@@ -34,14 +34,14 @@ const cartController = {
 
   getAll: async (req, res, next) => {
     try {
-      const { id: uid } = req.decoded;
+      const {uid} = req.params;
 
       const {
         rows: [{ total }],
       } = await cartModel.count(uid);
 
       if (parseInt(total) < 1) {
-        res.json({
+        return res.json({
           msg: "There is nothing in your cart",
         });
       }

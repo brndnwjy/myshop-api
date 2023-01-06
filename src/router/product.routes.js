@@ -7,9 +7,10 @@ const {
   update,
   remove,
 } = require("../controller/product.controller");
+const upload = require("../middleware/multer");
 
 router
-  .post("/", insert)
+  .post("/", upload.single("photo"), insert)
   .get("/", getAll)
   .get("/:id", getDetail)
   .put("/:id", update)

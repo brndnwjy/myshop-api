@@ -5,7 +5,7 @@ const router = express.Router();
 
 router
   .post("/", firebaseAuth, insert)
-  .get("/:uid", getAll)
+  .get("/:uid", firebaseAuth, getAll)
   .delete("/:id", firebaseAuth, remove);
 
 module.exports = router;

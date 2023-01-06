@@ -1,7 +1,7 @@
 const { v4: uuid } = require("uuid");
 const createError = require("http-errors");
+const cloudinary = require("../helper/cloudinary");
 const productModel = require("../model/product.model");
-const pool = require("../config/db");
 
 const productController = {
   insert: async (req, res, next) => {
@@ -9,13 +9,17 @@ const productController = {
       const id = uuid();
       let photo = null;
 
+      if (req.file) {
+        photo = await cloudinary.uploader.upload(req.file.path);
+      }
+
       const data = {
         id,
         title: req.body.title,
         price: req.body.price,
         stock: req.body.stock,
         description: req.body.description,
-        photo,
+        photo: photo.secure_url,
       };
 
       await productModel.insert(data);
@@ -75,8 +79,7 @@ const productController = {
   update: async (req, res, next) => {
     try {
       const { id } = req.params;
-      let photo = null;
-
+      let photo;
       const data = {
         id,
         title: req.body.title,
@@ -85,6 +88,14 @@ const productController = {
         description: req.body.description,
         photo,
       };
+
+      if (req.file) {
+        photo = await cloudinary.uploader.upload(req.file.path);
+        data = {
+          ...data,
+          photo: photo.secure_url,
+        };
+      }
 
       await productModel.update(data);
 

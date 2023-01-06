@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const bp = require("body-parser");
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -15,12 +16,8 @@ app.use(cors());
 app.use(helmet());
 app.use(xss());
 app.use(morgan("dev"));
-app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: false,
-  })
-);
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 
 app.use("/v1", main);
 

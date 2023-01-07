@@ -1,6 +1,7 @@
 const pool = require("../config/db");
 
 const paymentModel = {
+  // update db after checkout
   createHistory: (id, uid) => {
     return pool.query(
       `

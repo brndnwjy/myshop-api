@@ -1,6 +1,22 @@
 const pool = require("../config/db");
 
 const productModel = {
+  // get product
+  getAll: (search) => {
+    return pool.query(`SELECT * FROM product WHERE title ILIKE '%${search}%'`);
+  },
+
+  // count product
+  count: () => {
+    return pool.query("SELECT COUNT(*) AS total FROM product");
+  },
+
+  // get product detail
+  getDetail: (id) => {
+    return pool.query("SELECT * FROM product WHERE id = $1", [id]);
+  },
+
+  // insert new product
   insert: (data) => {
     return pool.query(
       `
@@ -18,18 +34,7 @@ const productModel = {
     );
   },
 
-  getAll: () => {
-    return pool.query("SELECT * FROM product");
-  },
-
-  count: () => {
-    return pool.query("SELECT COUNT(*) AS total FROM product");
-  },
-
-  getDetail: (id) => {
-    return pool.query("SELECT * FROM product WHERE id = $1", [id]);
-  },
-
+  // update product
   update: (data) => {
     return pool.query(
       `
@@ -52,8 +57,19 @@ const productModel = {
     );
   },
 
+  // remove product
   remove: (id) => {
     return pool.query("DELETE FROM product WHERE id = $1", [id]);
+  },
+
+  // update product stock after checkout
+  checkout: (pid, quantity) => {
+    return pool.query(
+      `
+    UPDATE product SET stock = (stock - $1) WHERE id = $2
+    `,
+      [quantity, pid]
+    );
   },
 };
 

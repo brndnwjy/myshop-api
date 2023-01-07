@@ -1,36 +1,10 @@
 const { v4: uuid } = require("uuid");
 const createError = require("http-errors");
+
 const cartModel = require("../model/cart.model");
 
 const cartController = {
-  insert: async (req, res, next) => {
-    try {
-      const id = uuid();
-      const { uid, title, price, quantity, description, photo } = req.body;
-
-      const data = {
-        id,
-        uid,
-        title,
-        price,
-        quantity,
-        description,
-        photo,
-        total: price * quantity,
-      };
-
-      await cartModel.insert(data);
-
-      res.json({
-        msg: "Insert cart success",
-        product: { data },
-      });
-    } catch (err) {
-      console.log(err);
-      next(createError(500, "Insert cart failed"));
-    }
-  },
-
+  // get cart
   getAll: async (req, res, next) => {
     try {
       const { uid } = req.params;
@@ -57,6 +31,37 @@ const cartController = {
     }
   },
 
+  // insert to cart
+  insert: async (req, res, next) => {
+    try {
+      const id = uuid();
+      const { pid, uid, title, price, quantity, description, photo } = req.body;
+
+      const data = {
+        id,
+        pid,
+        uid,
+        title,
+        price,
+        quantity,
+        description,
+        photo,
+        total: price * quantity,
+      };
+
+      await cartModel.insert(data);
+
+      res.json({
+        msg: "Insert cart success",
+        product: { data },
+      });
+    } catch (err) {
+      console.log(err);
+      next(createError(500, "Insert cart failed"));
+    }
+  },
+
+  // remove from cart
   remove: async (req, res, next) => {
     try {
       const { id } = req.params;

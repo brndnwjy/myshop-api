@@ -1,9 +1,57 @@
 const { v4: uuid } = require("uuid");
 const createError = require("http-errors");
 const cloudinary = require("../helper/cloudinary");
+
 const productModel = require("../model/product.model");
 
 const productController = {
+  // get product
+  getAll: async (req, res, next) => {
+    try {
+      const search = req.query.search || "";
+
+      const {
+        rows: [{ total }],
+      } = await productModel.count();
+
+      if (parseInt(total) < 1) {
+        res.json({
+          msg: "There is no product to show",
+        });
+      }
+
+      const { rows: products } = await productModel.getAll(search);
+
+      res.json({
+        msg: "Get all products success",
+        products,
+      });
+    } catch (err) {
+      console.log(err);
+      next(createError(500, "Get all products failed"));
+    }
+  },
+
+  // get product detail by id
+  getDetail: async (req, res, next) => {
+    try {
+      const { id } = req.params;
+
+      const {
+        rows: [product],
+      } = await productModel.getDetail(id);
+
+      res.json({
+        msg: "Get product detail success",
+        product,
+      });
+    } catch (err) {
+      console.log(err);
+      next(createError(500, "Get product detail failed"));
+    }
+  },
+
+  // insert new product 
   insert: async (req, res, next) => {
     try {
       const id = uuid();
@@ -34,48 +82,7 @@ const productController = {
     }
   },
 
-  getAll: async (req, res, next) => {
-    try {
-      const {
-        rows: [{ total }],
-      } = await productModel.count();
-
-      if (parseInt(total) < 1) {
-        res.json({
-          msg: "There is no product to show",
-        });
-      }
-
-      const { rows: products } = await productModel.getAll();
-
-      res.json({
-        msg: "Get all products success",
-        products,
-      });
-    } catch (err) {
-      console.log(err);
-      next(createError(500, "Get all products failed"));
-    }
-  },
-
-  getDetail: async (req, res, next) => {
-    try {
-      const { id } = req.params;
-
-      const {
-        rows: [product],
-      } = await productModel.getDetail(id);
-
-      res.json({
-        msg: "Get product detail success",
-        product,
-      });
-    } catch (err) {
-      console.log(err);
-      next(createError(500, "Get product detail failed"));
-    }
-  },
-
+  // update product
   update: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -113,6 +120,7 @@ const productController = {
     }
   },
 
+  // remove product
   remove: async (req, res, next) => {
     try {
       const { id } = req.params;

@@ -11,6 +11,7 @@ CREATE TABLE product (
 
 CREATE TABLE cart (
     id UUID PRIMARY KEY,
+    pid UUID NOT NULL,
     uid VARCHAR NOT NULL,
     hid UUID,
     title VARCHAR(64) NOT NULL,

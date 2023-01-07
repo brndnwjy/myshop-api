@@ -7,15 +7,12 @@ firebase.initializeApp({
 });
 
 const userController = {
-  // auth
+  // register with email
   firebaseRegister: async (req, res, next) => {
     try {
-      // const id = uuid();
       const { username, email, password } = req.body;
-      // const hashedPassword = await hash(password, 10);
 
       const user = await firebase.auth().createUser({
-        // uid: id,
         displayName: username,
         email,
         password,

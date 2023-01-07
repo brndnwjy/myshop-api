@@ -1,18 +1,19 @@
 const express = require("express");
 const router = express.Router();
+
 const {
-  insert,
   getAll,
   getDetail,
+  insert,
   update,
   remove,
 } = require("../controller/product.controller");
 const upload = require("../middleware/multer");
 
 router
-  .post("/", upload.single("photo"), insert)
   .get("/", getAll)
   .get("/:id", getDetail)
+  .post("/", upload.single("photo"), insert)
   .put("/:id", update)
   .delete("/:id", remove);
 

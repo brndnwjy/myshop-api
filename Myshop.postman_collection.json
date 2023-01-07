@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "7d9b416f-2f48-4e8d-8d65-71b72a82f005",
+		"name": "Myshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register (Firebase)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"John Doe\",\r\n    \"email\": \"example@mail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myshop-api.up.railway.app/v1/user/firebase-register",
+							"protocol": "https",
+							"host": [
+								"myshop-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"v1",
+								"user",
+								"firebase-register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Product title",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "100000",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "10",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/brndnwjy/Downloads/bucket-hat.jpeg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myshop-api.up.railway.app/v1/product",
+							"protocol": "https",
+							"host": [
+								"myshop-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://myshop-api.up.railway.app/v1/product",
+							"protocol": "https",
+							"host": [
+								"myshop-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://myshop-api.up.railway.app/v1/product/123",
+							"protocol": "https",
+							"host": [
+								"myshop-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"v1",
+								"product",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Product\",\r\n    \"stock\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myshop-api.up.railway.app/v1/product/123",
+							"protocol": "https",
+							"host": [
+								"myshop-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"v1",
+								"product",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://myshop-api.up.railway.app/v1/product/123",
+							"protocol": "https",
+							"host": [
+								"myshop-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"v1",
+								"product",
+								"123"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uid\": \"123\",\r\n    \"title\": \"Product\",\r\n    \"price\": 100000,\r\n    \"quantity\": 1,\r\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\",\r\n    \"photo\": \"photo.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myshop-api.up.railway.app/v1/cart",
+							"protocol": "https",
+							"host": [
+								"myshop-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"v1",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlOWI4ODBmODE4MmRkYTU1N2Y3YzcwZTIwZTRlMzcwZTNkMTI3NDciLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiQnJhbmRvbiBXaWpheWEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUVkRlRwNE4wLVJRN051cHltTWpDM2lXNHhqOXZjdkxfcExiZVNob3BvemdHdz1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9maXItbXlzaG9wLWF1dGgiLCJhdWQiOiJmaXItbXlzaG9wLWF1dGgiLCJhdXRoX3RpbWUiOjE2NzMwMDg5MDYsInVzZXJfaWQiOiJnNmx4VE1YWVZRV2ZjVWlyeEE5MFpZNmpPcnoxIiwic3ViIjoiZzZseFRNWFlWUVdmY1VpcnhBOTBaWTZqT3J6MSIsImlhdCI6MTY3MzAwODkwNiwiZXhwIjoxNjczMDEyNTA2LCJlbWFpbCI6ImJybmRud2p5OEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwNjE2MTMzMTIwMzA3Mzk3NjY5MiJdLCJlbWFpbCI6WyJicm5kbndqeThAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.HShY14JcpQ9w2tP-N8b0lAECcb6v_QqLYVQZ8harkSdab3K_blwyigl3YGvFRFGDqry9YNXjPsjV0HtM72d2PJSDuUeCdM39n1JXCJjMKrnWprxI__8Pobk3HSEtK0TQehmVl1QgJ575B-ggQ7-u-j29pIVR5mHpc54jTMPNnGNs-dXsr2Czfn1B_MZnnPAwtzftgfTFmyDM9sVtnJuvXN5n1kI1TRaCBe3fsZL9kQUC-OEmVjMibbTFnijbFiSlFvmeTqmquA92jHVlhWE1arAFyn2gp8jxf0AMXKg34hS0cO7ekB8QEjETmw-JVYtv8-K6OrDVBBBEbKwk5yrvmA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myshop-api.up.railway.app/v1/cart/123",
+							"protocol": "https",
+							"host": [
+								"myshop-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"v1",
+								"cart",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4ZjM2Mjc2LTJhZTctNGUwMy05NzBhLWQzNGE2OGE3YjU0NSIsInVzZXJuYW1lIjoiQnJhbmRvbiIsImVtYWlsIjoiYnJhbmRvbkBnbWFpbC5jb20iLCJpYXQiOjE2NzI5MDc4MzEsImV4cCI6MTY3MjkyOTQzMX0.iRcKNFdR5ONJW8W-XkEBXqc36vLJet-mimX4qC-kAQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://myshop-api.up.railway.app/v1/cart/123",
+							"protocol": "https",
+							"host": [
+								"myshop-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"v1",
+								"cart",
+								"123"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Checkout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://myshop-api.up.railway.app/v1/payment/checkout",
+							"protocol": "https",
+							"host": [
+								"myshop-api",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"v1",
+								"payment",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

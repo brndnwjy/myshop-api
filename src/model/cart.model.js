@@ -37,6 +37,18 @@ const cartModel = {
   remove: (id) => {
     return pool.query("DELETE FROM cart WHERE id = $1", [id]);
   },
+
+  update: (cid, id) => {
+    return pool.query(
+      `
+    UPDATE cart SET 
+    hid  = COALESCE($1, id),
+    status = 1
+    WHERE id = $2    
+    `,
+      [id, cid]
+    );
+  },
 };
 
 module.exports = cartModel;

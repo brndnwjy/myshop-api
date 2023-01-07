@@ -4,10 +4,12 @@ const router = express.Router();
 const userRoutes = require("./user.routes");
 const productRoutes = require("./product.routes");
 const cartRoutes = require("./cart.routes");
+const paymentRoutes = require("./payment.routes");
 
 router
   .use("/user", userRoutes)
   .use("/product", productRoutes)
-  .use("/cart", cartRoutes);
+  .use("/cart", cartRoutes)
+  .use("/payment", paymentRoutes);
 
 module.exports = router;

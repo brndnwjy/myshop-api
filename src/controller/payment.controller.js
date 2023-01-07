@@ -3,11 +3,11 @@ const stripe = Stripe(process.env.STRIPE_PRIVATE_KEY);
 const createError = require("http-errors");
 
 const paymentController = {
-  checkout: async (req, res) => {
+  checkout: async (req, res, next) => {
     try {
-      const { cart } = req.body;
+      const { data } = req.body;
 
-      const line_items = cart.map((item) => {
+      const items = data?.map((item) => {
         return {
           price_data: {
             currency: "IDR",
@@ -24,7 +24,7 @@ const paymentController = {
         };
       });
       const session = await stripe.checkout.sessions.create({
-        line_items,
+        line_items: items,
         mode: "payment",
         success_url: `${process.env.REACT_APP_URL}/checkout-success`,
         cancel_url: `${process.env.REACT_APP_URL}/cart`,

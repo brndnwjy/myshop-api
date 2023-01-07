@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-// router
-// .get("/")
-// .post("/")
-// .put("/")
-// .delete("/");
+const { firebaseRegister } = require("../controller/user.controller");
+
+router.post("/firebase-register", firebaseRegister);
 
 module.exports = router;

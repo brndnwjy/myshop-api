@@ -12,6 +12,7 @@ CREATE TABLE product (
 CREATE TABLE cart (
     id UUID PRIMARY KEY,
     uid VARCHAR NOT NULL,
+    hid UUID,
     title VARCHAR(64) NOT NULL,
     price INTEGER NOT NULL,
     quantity INTEGER NOT NULL,
@@ -19,4 +20,10 @@ CREATE TABLE cart (
     photo VARCHAR,
     total INTEGER,
     status INTEGER DEFAULT 0
+);
+
+CREATE TABLE history (
+    id UUID PRIMARY KEY,
+    uid VARCHAR NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW()
 );

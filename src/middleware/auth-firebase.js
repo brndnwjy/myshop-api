@@ -20,8 +20,8 @@ const firebaseAuth = (req, res, next) => {
     .auth()
     .verifyIdToken(token)
     .then((res) => {
-      console.log(res)
-      next()
+      console.log(res);
+      next();
     })
     .catch((err) => {
       console.log(err);

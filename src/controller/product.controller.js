@@ -51,7 +51,7 @@ const productController = {
     }
   },
 
-  // insert new product 
+  // insert new product
   insert: async (req, res, next) => {
     try {
       const id = uuid();
@@ -87,7 +87,7 @@ const productController = {
     try {
       const { id } = req.params;
       let photo;
-      const data = {
+      let data = {
         id,
         title: req.body.title,
         price: req.body.price,
